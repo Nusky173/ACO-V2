@@ -9,11 +9,11 @@ import java.util.function.Supplier;
 
 import impl.PartImpl;
 
-public class Engine extends PartImpl
+public abstract class Engine extends PartImpl
 {
-	private GasType gasType;
+	protected GasType gasType;
 	
-	private String power;
+	protected String power;
 	
 	public Engine()
 	{
@@ -32,6 +32,9 @@ public class Engine extends PartImpl
 		possibleValues = new HashSet<String>();
 		super.addProperty("consumption", getter,setter,possibleValues);
 	}
+	
+	protected abstract void initialize();
+	
 	private String getGas()
 	{
 		return gasType.toString();

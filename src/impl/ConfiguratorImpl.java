@@ -46,7 +46,8 @@ public class ConfiguratorImpl implements Configurator
 	}
 
 	@Override
-	public Configuration getConfiguration() {
+	public Configuration getConfiguration() 
+	{
 		return this.config;
 	}
 	
