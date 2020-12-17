@@ -1,0 +1,7 @@
+PartType = le prototype de la pièce
+
+Part = la pièce que tu vas acheter, que tu vas sélectionner pour mettre dans ta configuration
+
+
+
+
