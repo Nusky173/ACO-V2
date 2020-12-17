@@ -4,7 +4,7 @@ import api.CompatibilityManager;
 import enums.CategoryType;
 import enums.RoleType;
 import exceptions.InvalidParameterException;
-import parts.EG100;
+import parts.*;
 
 public class Session 
 {
@@ -28,6 +28,26 @@ public class Session
 	private void initialize()
 	{
 		configurator.Add(EG100.class, CategoryType.Engine);
+		configurator.Add(EG133.class, CategoryType.Engine);
+		configurator.Add(ED110.class, CategoryType.Engine);
+		configurator.Add(EG210.class, CategoryType.Engine);
+		configurator.Add(ED180.class, CategoryType.Engine);
+		configurator.Add(EH120.class, CategoryType.Engine);
+		
+		configurator.Add(TM5.class, CategoryType.Transmission);
+		configurator.Add(TM6.class, CategoryType.Transmission);
+		configurator.Add(TA5.class, CategoryType.Transmission);
+		configurator.Add(TS6.class, CategoryType.Transmission);
+		configurator.Add(TSF7.class, CategoryType.Transmission);
+		configurator.Add(TC120.class, CategoryType.Transmission);
+		
+		configurator.Add(XC.class, CategoryType.Exterior);
+		configurator.Add(XM.class, CategoryType.Exterior);
+		configurator.Add(XS.class, CategoryType.Exterior);
+		
+		configurator.Add(IN.class, CategoryType.Interior);
+		configurator.Add(IH.class, CategoryType.Interior);
+		configurator.Add(IS.class, CategoryType.Interior);	
 	}
 	
 	public RoleType getRole()
