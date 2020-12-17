@@ -4,6 +4,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,15 +37,28 @@ public class CommandsManager
 	   }
 
 	}
-	public static void Handle(String name,String param) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException
+	public static void Handle(String raw) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
+		String[] split = raw.split("\\s+");
+		
+		String name = split[0]; // split return at least one element
+		 
 		CommandInfo infos = handlers.get(name);
 		
 		if (infos != null)
 		{
 			if (infos.requiredRole.getValue() <= Session.INSTANCE.getRole().getValue())
 			{
-				infos.method.invoke(null,param);
+				
+				if (infos.method.getParameters().length != split.length-1)
+				{
+					logger.warning("Invalid method parameters.");
+					return;
+				}
+				
+				String[] args = Arrays.copyOfRange(split, 1, split.length);
+				
+				infos.method.invoke(null,args);
 				
 			}
 			else
