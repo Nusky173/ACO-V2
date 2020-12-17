@@ -1,6 +1,7 @@
 package commands;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,20 +14,20 @@ public class CommandsManager
 	
 	public static void initialize()
 	{
-		final List<Method> methods = new ArrayList<Method>();
-	   
+
 	    for (final Method method : Commands.class.getDeclaredMethods()) 
 	    {
-	            if (method.isAnnotationPresent(annotation)) 
-	            {
-	                Annotation annotInstance = method.getAnnotation(annotation);
-	                // TODO process annotInstance
-	                methods.add(method);
-	            }
-	        }
-	        // move to the upper class in the hierarchy in search for more methods
-	        klass = klass.getSuperclass();
-	    }
-	    return methods;
+	         if (method.isAnnotationPresent(Command.class)) 
+	         {
+	        	 Command commandAnnot = (Command)method.getAnnotation(Command.class);
+	                
+	        	 handlers.put(commandAnnot.name(),method);
+	         }
+	   }
+
+	}
+	public static void Handle(String name) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException
+	{
+		handlers.get(name).invoke(null);
 	}
 }
