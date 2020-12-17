@@ -48,7 +48,7 @@ public class ConfiguratorImpl implements Configurator
 	@Override
 	public Set<Category> getCategories() 
 	{
-		return (Set<Category>) categories.values();
+		return new HashSet<>(categories.values());
 	}
 
 	@Override
