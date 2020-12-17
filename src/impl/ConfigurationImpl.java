@@ -16,7 +16,7 @@ public class ConfigurationImpl implements Configuration
     
     private Configurator configurator;
 
-    public ConfigurationImpl() throws InvalidParameterException
+    public ConfigurationImpl() 
     {
     	this.configurator = new ConfiguratorImpl(this);
     	this.parts = new HashMap<Category,Part>();

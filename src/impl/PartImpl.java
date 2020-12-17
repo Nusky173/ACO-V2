@@ -29,8 +29,6 @@ public class PartImpl implements Part
 			this.possibleValues = possibleValues;
 		}
 	}
-
-	
 	private PartType type;
 
 	private Map<String, Property> properties = new HashMap<>();
