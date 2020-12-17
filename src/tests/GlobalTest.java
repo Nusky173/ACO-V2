@@ -5,6 +5,7 @@ import org.junit.Test;
 import api.*;
 import exceptions.InvalidParameterException;
 import impl.*;
+import parts.*;
 
 public class GlobalTest
 {
@@ -13,11 +14,9 @@ public class GlobalTest
 	{
 		ConfigurationImpl config = TestsContainer.buildConfiguration();
 		
-		PartImpl eg100priced =  TestsContainer.EG100.newInstance();
+		PartImpl eg100 = new EG100();
 		
-		eg100priced.setProperty("gas", "Gasoline");
-		
-		config.selectPart(eg100priced);
+		eg100.getPropertyNames();
 	
 	}
 }

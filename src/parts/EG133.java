@@ -1,11 +1,12 @@
 package parts;
 
-public class EG100 extends Engine
+public class EG133 extends Engine
 {
 	@Override
 	protected void initialize() 
 	{
 		this.gasType = GasType.Gasoline;
-		this.power = "100kW";
+		this.power = "133kW";
 	}
+	
 }
