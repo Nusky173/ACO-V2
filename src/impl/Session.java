@@ -7,6 +7,8 @@ import parts.EG100;
 
 public class Session 
 {
+	public static Session INSTANCE = new Session();
+	
 	public ConfigurationImpl configuration;
 	public CompatibilityManager compatibilityManager;
 	public ConfiguratorImpl configurator;
@@ -18,7 +20,6 @@ public class Session
 		this.configurator = ((ConfiguratorImpl)configuration.getConfigurator());
 		this.initialize();
 	}
-	
 	
 	private void initialize()
 	{
