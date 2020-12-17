@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -39,10 +40,19 @@ public class ConfiguratorImpl implements Configurator
 		PartTypeImpl partType = new PartTypeImpl(name,classRef,categories.get(type));
 		catalog.put(name, partType);
 	}
-	
-	public Part CreateInstance(String partTypeName)
+
+	public Optional<Part> CreateInstance(String partTypeName)
 	{
-		return catalog.get(partTypeName).newInstance();
+		PartTypeImpl partType = catalog.get(partTypeName);
+		
+		if (partType != null)
+		{
+			return Optional.of(partType.newInstance());
+		}
+		else
+		{
+			return Optional.empty();
+		}
 	}
 	
 	@Override

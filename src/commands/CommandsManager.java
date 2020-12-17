@@ -49,7 +49,6 @@ public class CommandsManager
 		{
 			if (infos.requiredRole.getValue() <= Session.INSTANCE.getRole().getValue())
 			{
-				
 				if (infos.method.getParameters().length != split.length-1)
 				{
 					logger.warning("Invalid method parameters.");
