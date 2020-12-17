@@ -24,17 +24,7 @@ public class Program
 		
         while ((line = br.readLine()) != null) 
         {
-        	String[] splited = line.split("\\s+");
-        	
-        	if (splited.length == 2)
-        	{
-        		CommandsManager.Handle(splited[0],splited[1]);
-        	}
-        	else
-        	{
-        		logger.warning("Unable to parse command " + line);
-        	}
-        	
+        	CommandsManager.Handle(line);
         }  
 		
 		

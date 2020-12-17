@@ -58,7 +58,7 @@ public class ConfigurationImpl implements Configuration
 	{
 		for (Category cat : configurator.getCategories())
 		{	
-			if (getSelectionForCategory(cat) == null) 
+			if (getSelectionForCategory(cat).isEmpty()) 
 			{
 				return false;			
 			}
@@ -95,12 +95,11 @@ public class ConfigurationImpl implements Configuration
 	{
 		if(this.parts.containsKey(category))
 		{	
-			return Optional.ofNullable(parts.get(category));
+			return Optional.of(parts.get(category));
 		}
-
 		else
 		{
-			throw new InvalidParameterException("You haven't select a part for the category " + category + " yet.");
+			return Optional.empty();
 		}
 	}
 

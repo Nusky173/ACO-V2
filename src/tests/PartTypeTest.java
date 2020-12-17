@@ -12,19 +12,18 @@ import partsCategories.Engine;
 
 public class PartTypeTest 
 {
-	
 	@Test
 	public void test1() 
 	{
 		Session session = new Session();
-		assertEquals(session.configurator.CreateInstance("EG100").getName(), "EG100");
+		assertEquals(session.configurator.CreateInstance("EG100").get().getName(), "EG100");
 	}
 	
 	@Test
 	public void test2() 
 	{
 		Session session = new Session();
-		assertEquals(session.configurator.CreateInstance("EG100").getCategory().getName(), "Engine");
+		assertEquals(session.configurator.CreateInstance("EG100").get().getCategory().getName(), "Engine");
 	}
 
 }
