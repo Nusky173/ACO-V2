@@ -1,10 +1,12 @@
 package commands;
 
+import impl.Session;
+
 public class Commands 
 {
-	@Command(name ="SELECT", role="ADMIN")
-	public static void SelectPart()
+	@Command(name ="SELECT", role="User")
+	public static void SelectPart(String param)
 	{
-		System.out.println("we select part");
+		Session.INSTANCE.configurator.getCategories();
 	}
 }

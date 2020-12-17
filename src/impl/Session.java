@@ -2,6 +2,7 @@ package impl;
 
 import api.CompatibilityManager;
 import enums.CategoryType;
+import enums.RoleType;
 import exceptions.InvalidParameterException;
 import parts.*;
 
@@ -13,8 +14,11 @@ public class Session
 	public CompatibilityManager compatibilityManager;
 	public ConfiguratorImpl configurator;
 	
+	private RoleType Role;
+	
 	public Session() 
 	{
+		this.Role = RoleType.User;
 		this.configuration = new ConfigurationImpl();
 		this.compatibilityManager = (CompatibilityManager)configuration.getConfigurator().getCompatibilityChecker();
 		this.configurator = ((ConfiguratorImpl)configuration.getConfigurator());
@@ -44,6 +48,11 @@ public class Session
 		configurator.Add(IN.class, CategoryType.Interior);
 		configurator.Add(IH.class, CategoryType.Interior);
 		configurator.Add(IS.class, CategoryType.Interior);	
+	}
+	
+	public RoleType getRole()
+	{
+		return this.Role;
 	}
 
 }
