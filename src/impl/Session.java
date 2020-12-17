@@ -47,7 +47,8 @@ public class Session
 		
 		configurator.Add(IN.class, CategoryType.Interior);
 		configurator.Add(IH.class, CategoryType.Interior);
-		configurator.Add(IS.class, CategoryType.Interior);	
+		configurator.Add(IS.class, CategoryType.Interior);
+		
 	}
 	
 	public RoleType getRole()

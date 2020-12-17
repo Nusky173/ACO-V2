@@ -17,7 +17,7 @@ public interface Configuration
     /*Renvoie toutes les parties de la configuration.*/
     Set<Part> getSelectedParts();
 
-    /*Definie une partie a� la configuration*/
+    /*Definie une partie a la configuration*/
     void selectPart(Part chosenPart) throws InvalidParameterException;
 
     /*Retourne la partie correspondante de la configuration � la categorie*/
