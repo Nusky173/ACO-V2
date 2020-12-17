@@ -12,7 +12,6 @@ public class GlobalTest
 	@Test
 	public void Test1() throws InvalidParameterException
 	{
-		ConfigurationImpl config = TestsContainer.buildConfiguration();
 		
 		PartImpl eg100 = new EG100();
 		

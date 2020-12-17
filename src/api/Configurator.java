@@ -6,6 +6,7 @@ import exceptions.InvalidParameterException;
 
 public interface Configurator {
 
+
 	/*Retourne les categories.*/
     Set<Category> getCategories();
 

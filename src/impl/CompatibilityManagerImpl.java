@@ -15,7 +15,6 @@ public class CompatibilityManagerImpl implements CompatibilityManager
 		
 	HashMap<String,Set<PartType>> requirements;
 	
-	
 	public CompatibilityManagerImpl()
 	{
 		this.incompatibilities = new HashMap<String,Set<PartType>>();
