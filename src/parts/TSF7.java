@@ -5,6 +5,9 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import enums.TransmissionType;
+import partsCategories.Transmission;
+
 public class TSF7 extends Transmission
 {
 	private String transmissionWheels;

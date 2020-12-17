@@ -1,5 +1,8 @@
 package parts;
 
+import enums.GasType;
+import partsCategories.Engine;
+
 public class EG133 extends Engine
 {
 	@Override

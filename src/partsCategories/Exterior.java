@@ -1,4 +1,4 @@
-package parts;
+package partsCategories;
 
 import java.util.HashSet;
 import java.util.Set;

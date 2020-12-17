@@ -1,5 +1,8 @@
 package parts;
 
+import enums.TransmissionType;
+import partsCategories.Transmission;
+
 public class TS6 extends Transmission
 {
 	@Override

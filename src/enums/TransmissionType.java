@@ -1,4 +1,4 @@
-package parts;
+package enums;
 
 public enum TransmissionType 
 {

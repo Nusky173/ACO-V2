@@ -1,10 +1,11 @@
-package parts;
+package partsCategories;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import enums.TransmissionType;
 import impl.PartImpl;
 
 public abstract class Transmission extends PartImpl

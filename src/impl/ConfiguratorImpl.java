@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import api.*;
+import enums.CategoryType;
 import exceptions.InvalidParameterException;
 import parts.EG100;
 

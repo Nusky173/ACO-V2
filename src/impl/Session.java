@@ -1,6 +1,7 @@
 package impl;
 
 import api.CompatibilityManager;
+import enums.CategoryType;
 import exceptions.InvalidParameterException;
 import parts.EG100;
 
