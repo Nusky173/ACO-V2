@@ -5,7 +5,7 @@ public interface Part extends PropertyManager
 {
 	default String getName() 
 	{
-		return this.getClass().getTypeName();
+		return this.getClass().getSimpleName();
 	};
 	Category getCategory();
 	PartType getType();
