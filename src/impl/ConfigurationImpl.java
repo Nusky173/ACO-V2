@@ -15,12 +15,12 @@ public class ConfigurationImpl implements Configuration
     private HashMap<Category,Part> parts;
     
     private Configurator configurator;
-    
-    
-    public ConfigurationImpl()
+
+    public ConfigurationImpl() throws InvalidParameterException
     {
     	this.configurator = new ConfiguratorImpl(this);
     	this.parts = new HashMap<Category,Part>();
+
     }
     
     

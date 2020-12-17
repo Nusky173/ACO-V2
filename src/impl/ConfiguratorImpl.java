@@ -5,13 +5,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-import api.Category;
-import api.CompatibilityChecker;
-import api.Configuration;
 import api.*;
 import exceptions.InvalidParameterException;
-
+import parts.EG100;
 
 public class ConfiguratorImpl implements Configurator
 {
@@ -19,30 +17,43 @@ public class ConfiguratorImpl implements Configurator
 	
 	private CompatibilityChecker checker;
 	
-	private HashMap<Category, Set<PartType>> catalog = new HashMap<Category, Set<PartType>>();
+	private HashMap<String, PartTypeImpl> catalog = new HashMap<String, PartTypeImpl>();
 	
-	public ConfiguratorImpl(Configuration configuration)
+	private HashMap<CategoryType,Category> categories = new HashMap<CategoryType,Category>();
+	
+	public ConfiguratorImpl(Configuration configuration) 
 	{
 		this.checker = new CompatibilityManagerImpl(); 
 		this.config = configuration;
+		
+		for (CategoryType categoryType : CategoryType.values())
+		{ 
+			categories.put(categoryType, new CategoryImpl(categoryType.name()));
+	    }
+	}
+	
+	public void Add(Class<? extends PartImpl> classRef,CategoryType type) 
+	{
+		String name = classRef.getSimpleName();
+		PartTypeImpl partType = new PartTypeImpl(name,classRef,categories.get(type));
+		catalog.put(name, partType);
+	}
+	
+	public Part CreateInstance(String partTypeName)
+	{
+		return catalog.get(partTypeName).newInstance();
 	}
 	
 	@Override
-	public Set<Category> getCategories() {
-		return catalog.keySet();
+	public Set<Category> getCategories() 
+	{
+		return (Set<Category>) categories.values();
 	}
 
 	@Override
-	public Set<PartType> getVariants(Category category) throws InvalidParameterException 
+	public Set<PartType> getVariants(Category category)  
 	{
-		if(catalog.containsKey(category))
-		{
-			return catalog.get(category);	
-		}
-		else 
-		{
-			throw new InvalidParameterException("The category " + category + " does not exist in our catalog. Maybe try with an other spell");
-		}
+		return catalog.values().stream().filter(x->x.getCategory() == category).collect(Collectors.toSet());
 	}
 
 	@Override
@@ -51,20 +62,7 @@ public class ConfiguratorImpl implements Configurator
 		return this.config;
 	}
 	
-	public void addToCatalog(Category category,PartType partType)
-	{
-
-		if (!catalog.containsKey(category))
-		{
-			HashSet<PartType> set = new HashSet<PartType>();
-			set.add(partType);
-			catalog.put(category, set);
-		}
-		else
-		{
-			catalog.get(category).add(partType);
-		}
-	}
+	 
 	public void print()
 	{
 		Iterator it = catalog.entrySet().iterator();
@@ -72,7 +70,6 @@ public class ConfiguratorImpl implements Configurator
 	    {
 	        Map.Entry pair = (Map.Entry)it.next();
 	        System.out.println(pair.getKey() + " = " + pair.getValue());
-
 	    }
 	}
 	public void SetCompatibilityChecker(CompatibilityChecker checker)
@@ -80,7 +77,8 @@ public class ConfiguratorImpl implements Configurator
 		this.checker = checker;
 	}
 	@Override
-	public CompatibilityChecker getCompatibilityChecker() {
+	public CompatibilityChecker getCompatibilityChecker()
+	{
 		return checker;
 	}
 
