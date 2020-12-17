@@ -1,4 +1,4 @@
-package impl;
+package enums;
 
 public enum CategoryType
 {

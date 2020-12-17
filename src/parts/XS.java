@@ -1,5 +1,7 @@
 package parts;
 
+import partsCategories.Exterior;
+
 public class XS extends Exterior
 {
 	@Override

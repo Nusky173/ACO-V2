@@ -1,5 +1,7 @@
 package parts;
 
+import partsCategories.Interior;
+
 public class IN extends Interior
 {
 	@Override

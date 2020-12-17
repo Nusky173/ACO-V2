@@ -1,6 +1,8 @@
 package parts;
 
-import impl.CategoryType;
+import enums.CategoryType;
+import enums.GasType;
+import partsCategories.Engine;
 
 public class EG100 extends Engine
 {	
