@@ -2,6 +2,7 @@ package impl;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -33,6 +34,22 @@ public class PartImpl implements Part
 
 	private Map<String, Property> properties = new HashMap<>();
 	
+	protected String price;
+	
+	protected PartImpl()
+	{
+		addProperty("price",() -> getPrice(),(String value) -> setPrice(value),new HashSet<String>());
+		setPrice("0");
+	}
+	
+	protected String getPrice()
+	{
+		return price+"e";
+	}
+	protected void setPrice(String price)
+	{
+		this.price = price;
+	}
 	protected void addProperty(String name, Supplier<String> getter, Consumer<String> setter,
 			Set<String> possibleValues) 
 	{
@@ -65,7 +82,8 @@ public class PartImpl implements Part
 		if ((properties.containsKey(propertyName)) && (properties.get(propertyName).setter != null))
 		{
 			properties.get(propertyName).setter.accept(propertyValue);
-		} else 
+		} 
+		else 
 		{
 			throw new IllegalArgumentException("bad property name or value: " + propertyName);
 		}

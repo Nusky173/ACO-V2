@@ -46,7 +46,6 @@ namespace ACO.GUI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             CarTaylorHooks.Put("EXPORT");
-            Process.Start("export.html");
         }
 
         private void CategoriesOnSelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -1,5 +1,7 @@
 package commands;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -27,7 +29,7 @@ public class Commands
 	/**
 	 * Command that select a part
 	 * @param param name of the selected part
-	 * @throws InvalidParameterException
+	 * @throws InvalidParameterException if the part is invalid
 	 */
 	@Command(name ="SELECT", role="User")
 	public static void SelectPart(String param) throws InvalidParameterException
@@ -68,7 +70,7 @@ public class Commands
 	 * Logger.info() because GUI is using the standard output
 	 */
 	@Command(name = "VALID", role="User")
-	public static void IsValid() throws InvalidParameterException
+	public static void IsValid()
 	{
 		/*
 		 *	Here we use System.out because the GUI will use the 
@@ -86,15 +88,17 @@ public class Commands
 		HtmlWriter writer = new HtmlWriter(ExportFilename);
 		writer.writeConfiguration(Session.INSTANCE.configuration);
 		writer.save();
+		
+		File file = new File(ExportFilename);
+		Desktop.getDesktop().open(file);
 		logger.info("Configuration exported.");
 	}
 	
 	/**
 	 * Return all available categories.
-	 * @throws IOException
 	 */
 	@Command(name = "CATEGORIES",role="User")
-	public static void Categories() throws IOException
+	public static void Categories()
 	{
 		ArrayList<String> cats = new ArrayList<String>();
 		
@@ -107,11 +111,11 @@ public class Commands
 		System.out.println(result);
 	}
 	/**
-	 * Return all parts relative to a category
-	 * @throws IOException
+	 * Return all parts that has category raw category
+	 * @param rawCategory the specified category
 	 */
 	@Command(name = "VARIANTS",role="User")
-	public static void Variants(String rawCategory) throws IOException
+	public static void Variants(String rawCategory) 
 	{
 		CategoryType type = CategoryType.valueOf(rawCategory);
 		
@@ -131,7 +135,6 @@ public class Commands
 	}
 	/**
 	 * Write all selected part name to the standard output stream
-	 * @throws IOException relative to output stream
 	 */
 	@Command(name = "VIEW",role="User")
 	public static void View()
@@ -167,7 +170,7 @@ public class Commands
 	 * Define rawTarget part incompatible with RawRef part.
 	 * @param rawRef the PartType reference
 	 * @param rawTarget the PartType target
-	 * @throws InvalidParameterException rawRef & rawTarget should be valid PartTypes.
+	 * @throws InvalidParameterException rawRef and rawTarget should be valid PartTypes.
 	 */
 	@Command(name = "ADDICMP",role="Admin")
 	public static void AddIncompatibility(String rawRef,String rawTarget) throws InvalidParameterException
@@ -195,8 +198,8 @@ public class Commands
 	 * Remove an incompatibility between RawRef and RawTarget.
 	 * @param rawRef the PartType reference
 	 * @param rawTarget the PartType target
-	 * @throws InvalidParameterException rawRef & rawTarget should be valid PartTypes 
-	 * & they should have incompatibility together.
+	 * @throws InvalidParameterException rawRef and rawTarget should be valid PartTypes 
+	 * and they should have incompatibility together.
 	 */
 	@Command(name = "RMICMP",role="Admin")
 	public static void RemoveIncomp(String rawRef,String rawTarget) throws InvalidParameterException

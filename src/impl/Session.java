@@ -23,9 +23,7 @@ public class Session
 	
 	public Session() 
 	{
-		
 		reset();
-		
 	}
 	
 	public void reset()
