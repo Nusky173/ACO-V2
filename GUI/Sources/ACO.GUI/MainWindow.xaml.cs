@@ -27,7 +27,7 @@ namespace ACO.GUI
         {
             InitializeComponent();
 
-            CarTaylorBinding.Run();
+            CarTaylorHooks.Run();
 
             DisplayCategories();
         }
@@ -36,7 +36,7 @@ namespace ACO.GUI
         {
             categories.Items.Clear();
 
-            string result = CarTaylorBinding.Get("CATEGORIES");
+            string result = CarTaylorHooks.Get("CATEGORIES");
 
             foreach (var category in result.Split(','))
             {
@@ -45,7 +45,7 @@ namespace ACO.GUI
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            CarTaylorBinding.Put("EXPORT");
+            CarTaylorHooks.Put("EXPORT");
             Process.Start("export.html");
         }
 
@@ -53,7 +53,7 @@ namespace ACO.GUI
         {
             variants.Items.Clear();
 
-            string result = CarTaylorBinding.Get("VARIANTS " + categories.SelectedItem.ToString());
+            string result = CarTaylorHooks.Get("VARIANTS " + categories.SelectedItem.ToString());
 
             foreach (var partType in result.Split(','))
             {
@@ -65,7 +65,7 @@ namespace ACO.GUI
         {
             if (variants.SelectedItem != null)
             {
-                CarTaylorBinding.Put("SELECT " + variants.SelectedItem);
+                CarTaylorHooks.Put("SELECT " + variants.SelectedItem);
 
                 UpdateConfiguration();
             }
@@ -75,7 +75,7 @@ namespace ACO.GUI
         {
             config.Items.Clear();
 
-            string result = CarTaylorBinding.Get("VIEW");
+            string result = CarTaylorHooks.Get("VIEW");
 
             foreach (var partType in result.Split(','))
             {
@@ -89,7 +89,7 @@ namespace ACO.GUI
             {
                 var category = config.SelectedItem.ToString().Split('(')[1].Split(')')[0];
 
-                CarTaylorBinding.Put("UNSELECT " + category);
+                CarTaylorHooks.Put("UNSELECT " + category);
 
                 UpdateConfiguration();
             }
@@ -98,7 +98,7 @@ namespace ACO.GUI
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            string res = CarTaylorBinding.Get("VALID");
+            string res = CarTaylorHooks.Get("VALID");
 
             if (res == "true")
             {
@@ -112,7 +112,7 @@ namespace ACO.GUI
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            string res = CarTaylorBinding.Get("COMPLETE");
+            string res = CarTaylorHooks.Get("COMPLETE");
 
 
             if (res == "true")
