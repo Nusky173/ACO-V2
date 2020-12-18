@@ -4,9 +4,8 @@ import java.util.Set;
 
 import exceptions.InvalidParameterException;
 
-public interface Configurator {
-
-
+public interface Configurator
+{
 	/**
 	 * 
 	 * @return a set of the categories available for the catalog.
