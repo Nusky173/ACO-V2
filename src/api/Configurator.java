@@ -7,10 +7,18 @@ import exceptions.InvalidParameterException;
 public interface Configurator {
 
 
-	/*Retourne les categories.*/
+	/**
+	 * 
+	 * @return a set of the categories available for the catalog.
+	 */
     Set<Category> getCategories();
 
-    /*Retourne les variantes possible pour les categories.*/
+    /**
+     * 
+     * @param category 
+     * @return all the variants for the category select, wich are available in the catalog.
+     * @throws InvalidParameterException the category is not refer in the catalog.
+     */
     Set<PartType> getVariants(Category category)   throws InvalidParameterException; 
 
     /*Renvoie la configuration actuelle.*/

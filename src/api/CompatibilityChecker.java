@@ -6,14 +6,18 @@ import java.util.Set;
 public interface CompatibilityChecker 
 {
 
-	/* 
-	 * Retourne les parties incompatibles avec la partie de référence.
+	/**
+	 * The incompatibiities are made by the addIncompatibilities/removeIncompatibilities command.
+	 * @param reference a PartType
+	 * @return all the incompatibilities of the reference 
 	 */
     Set<PartType> getIncompatibilities(PartType reference);
     
-    /*
-     * Retourne les parties nécessaire à la partie de référence
-     */
+    /**
+	 * The requirements are made by the addRequirements/removeRequirements command.
+	 * @param reference a PartType
+	 * @return all the requirements of the reference 
+	 */
     Set<PartType> getRequirements(PartType reference);
     
     
