@@ -73,7 +73,11 @@ public class ConfiguratorImpl implements Configurator
 	{
 		return new HashSet<>(categories.values());
 	}
-
+	
+	public Category getCategory(CategoryType category)
+	{
+		return categories.get(category);
+	}
 	@Override
 	public Set<PartType> getVariants(Category category)  
 	{

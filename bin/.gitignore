@@ -1,14 +1,2 @@
-/.classpath
-/.project
-/Program.class
-/api/
 /commands/
-/enums/
-/exceptions/
-/export.html
 /impl/
-/parts/
-/partsCategories/
-/tests/
-/utils/
-/v2.txt

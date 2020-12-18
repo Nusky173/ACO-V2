@@ -32,7 +32,7 @@ public class PartImpl implements Part
 	private PartType type;
 
 	private Map<String, Property> properties = new HashMap<>();
-
+	
 	protected void addProperty(String name, Supplier<String> getter, Consumer<String> setter,
 			Set<String> possibleValues) 
 	{
