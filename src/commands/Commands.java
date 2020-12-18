@@ -17,7 +17,7 @@ public class Commands
 	{
 		Optional<Part> part = Session.INSTANCE.configurator.CreateInstance(param);
 		
-		if (part.isEmpty())
+		if (!part.isPresent())
 		{
 			logger.warning("Part not found.");
 			return;

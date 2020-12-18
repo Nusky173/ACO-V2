@@ -8,6 +8,7 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.Test;
@@ -40,7 +41,7 @@ public class ConfigurationTest
 	{
 		Session session = new Session();
 
-		session.configuration.selectPart(session.configurator.CreateInstance("EG100"));
+		session.configuration.selectPart(session.configurator.CreateInstance("EG100").get());
 		
 		Set<Part> partTypes = session.configuration.getSelectedParts();
 		
@@ -60,8 +61,8 @@ public class ConfigurationTest
 	{
 		Session session = new Session();
 
-		session.configuration.selectPart(session.configurator.CreateInstance("EG100"));
-		session.configuration.selectPart(session.configurator.CreateInstance("ED180"));
+		session.configuration.selectPart(session.configurator.CreateInstance("EG100").get());
+		session.configuration.selectPart(session.configurator.CreateInstance("ED180").get());
 		
 		Set<Part> partTypes = session.configuration.getSelectedParts();
 				
@@ -79,11 +80,11 @@ public class ConfigurationTest
 	{
 		Session session = new Session();
 		
-		session.configuration.selectPart(session.configurator.CreateInstance("EG100"));
-		session.configuration.selectPart(session.configurator.CreateInstance("TA5"));
-		session.configuration.selectPart(session.configurator.CreateInstance("XM"));
+		session.configuration.selectPart(session.configurator.CreateInstance("EG100").get());
+		session.configuration.selectPart(session.configurator.CreateInstance("TA5").get());
+		session.configuration.selectPart(session.configurator.CreateInstance("XM").get());
 		
-		assertThrows(exceptions.InvalidParameterException.class, () -> {session.configuration.isComplete();});
+		assertFalse(session.configuration.isComplete());
 	}
 	
 	@Test
@@ -91,10 +92,10 @@ public class ConfigurationTest
 	{
 		Session session = new Session();
 		
-		session.configuration.selectPart(session.configurator.CreateInstance("EG100"));
-		session.configuration.selectPart(session.configurator.CreateInstance("TA5"));
-		session.configuration.selectPart(session.configurator.CreateInstance("XM"));
-		session.configuration.selectPart(session.configurator.CreateInstance("IS"));
+		session.configuration.selectPart(session.configurator.CreateInstance("EG100").get());
+		session.configuration.selectPart(session.configurator.CreateInstance("TA5").get());
+		session.configuration.selectPart(session.configurator.CreateInstance("XM").get());
+		session.configuration.selectPart(session.configurator.CreateInstance("IS").get());
 		assertTrue(session.configuration.isComplete());
 	}
 	
@@ -105,9 +106,9 @@ public class ConfigurationTest
 	{
 		Session session = new Session();
 		
-		session.configuration.selectPart(session.configurator.CreateInstance("EG100"));
+		session.configuration.selectPart(session.configurator.CreateInstance("EG100").get());
 		
-		session.configuration.unselectPartType(session.configurator.CreateInstance("EG100").getCategory());
+		session.configuration.unselectPartType(session.configurator.CreateInstance("EG100").get().getCategory());
 		
 		assertTrue(session.configuration.getSelectedParts().isEmpty());
 	}
@@ -118,14 +119,14 @@ public class ConfigurationTest
 	{
 		Session session = new Session();
 		
-		session.configuration.selectPart(session.configurator.CreateInstance("EG100"));
-		session.configuration.selectPart(session.configurator.CreateInstance("TA5"));
-		session.configuration.selectPart(session.configurator.CreateInstance("XM"));
-		session.configuration.selectPart(session.configurator.CreateInstance("IS"));
+		session.configuration.selectPart(session.configurator.CreateInstance("EG100").get());
+		session.configuration.selectPart(session.configurator.CreateInstance("TA5").get());
+		session.configuration.selectPart(session.configurator.CreateInstance("XM").get());
+		session.configuration.selectPart(session.configurator.CreateInstance("IS").get());
 		
-		session.configuration.unselectPartType(session.configurator.CreateInstance("EG100").getCategory());
+		session.configuration.unselectPartType(session.configurator.CreateInstance("EG100").get().getCategory());
 		
-		assertThrows(exceptions.InvalidParameterException.class, () -> {session.configuration.isComplete();});
+		assertFalse(session.configuration.isComplete());
 	}
 	
 	@Test
@@ -134,9 +135,9 @@ public class ConfigurationTest
 	{
 		Session session = new Session();
 		
-		session.configuration.selectPart(session.configurator.CreateInstance("XM"));
+		session.configuration.selectPart(session.configurator.CreateInstance("XM").get());
 		
-		assertThrows(exceptions.InvalidParameterException.class, () -> {session.configuration.unselectPartType(session.configurator.CreateInstance("EG100").getCategory());});
+		assertThrows(exceptions.InvalidParameterException.class, () -> {session.configuration.unselectPartType(session.configurator.CreateInstance("EG100").get().getCategory());});
 	}	
 	
 	
@@ -146,9 +147,9 @@ public class ConfigurationTest
 	{
 		Session session = new Session();
 		
-		session.configuration.selectPart(session.configurator.CreateInstance("XM"));
+		session.configuration.selectPart(session.configurator.CreateInstance("XM").get());
 		
-		assertEquals(session.configuration.getSelectionForCategory(session.configurator.CreateInstance("XM").getCategory()).get().getName(), "XM");		
+		assertEquals(session.configuration.getSelectionForCategory(session.configurator.CreateInstance("XM").get().getCategory()).get().getName(), "XM");		
 	}	
 	
 	@Test
@@ -156,9 +157,9 @@ public class ConfigurationTest
 	{
 		Session session = new Session();
 		
-		session.configuration.selectPart(session.configurator.CreateInstance("EG100"));
+		session.configuration.selectPart(session.configurator.CreateInstance("EG100").get());
 		
-		assertThrows(exceptions.InvalidParameterException.class, () -> { session.configuration.getSelectionForCategory(session.configurator.CreateInstance("XM").getCategory()).get().getName(); });		
+		assertEquals(session.configuration.getSelectionForCategory(session.configurator.CreateInstance("XM").get().getCategory()), Optional.empty());		
 	}	
 	
 	//clear
@@ -167,8 +168,8 @@ public class ConfigurationTest
 	{
 		Session session = new Session();
 		
-		session.configuration.selectPart(session.configurator.CreateInstance("EG100"));
-		session.configuration.selectPart(session.configurator.CreateInstance("TA5"));
+		session.configuration.selectPart(session.configurator.CreateInstance("EG100").get());
+		session.configuration.selectPart(session.configurator.CreateInstance("TA5").get());
 		
 		session.configuration.clear();
 		

@@ -58,7 +58,7 @@ public class ConfigurationImpl implements Configuration
 	{
 		for (Category cat : configurator.getCategories())
 		{	
-			if (getSelectionForCategory(cat).isEmpty()) 
+			if (!getSelectionForCategory(cat).isPresent()) 
 			{
 				return false;			
 			}
