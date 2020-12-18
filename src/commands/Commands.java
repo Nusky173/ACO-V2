@@ -22,7 +22,7 @@ public class Commands
 {
 	public static final Logger logger =  Logger.getGlobal();
 	
-	private final static String OutputFilename  = "export.html";
+	private final static String ExportFilename  = "export.html";
 	
 	/**
 	 * Command that select a part
@@ -83,7 +83,7 @@ public class Commands
 	@Command(name = "EXPORT",role="User")
 	public static void Export() throws IOException
 	{
-		HtmlWriter writer = new HtmlWriter(OutputFilename);
+		HtmlWriter writer = new HtmlWriter(ExportFilename);
 		writer.writeConfiguration(Session.INSTANCE.configuration);
 		writer.save();
 		logger.info("Configuration exported.");
@@ -215,6 +215,52 @@ public class Commands
 			return;
 		}
 		
+		Set<PartType> targetSet = new HashSet<PartType>();
+		targetSet.add(target.get());
+		
 		Session.INSTANCE.compatibilityManager.removeIncompatibility(reference.get(),target.get());
+	}
+	
+	@Command(name = "ADDREQ",role="Admin")
+	public static void AddRequirement(String rawRef,String rawTarget) throws InvalidParameterException
+	{
+		Optional<PartTypeImpl> reference = Session.INSTANCE.configurator.getPartType(rawRef);
+		Optional<PartTypeImpl> target = Session.INSTANCE.configurator.getPartType(rawTarget);
+		
+		if (!reference.isPresent())
+		{
+			logger.warning("Reference "+rawRef+" cannot be found.");
+			return;
+		}
+		if (!target.isPresent())
+		{
+			logger.warning("Target "+rawTarget+" cannot be found.");
+			return;
+		}
+
+		Set<PartType> targetSet = new HashSet<PartType>();
+		targetSet.add(target.get());
+		
+		Session.INSTANCE.compatibilityManager.addRequirements(reference.get(), targetSet);
+		
+	}
+	@Command(name = "RMREQ",role="Admin")
+	public static void RemoveRequirement(String rawRef,String rawTarget) throws InvalidParameterException
+	{
+		Optional<PartTypeImpl> reference = Session.INSTANCE.configurator.getPartType(rawRef);
+		Optional<PartTypeImpl> target = Session.INSTANCE.configurator.getPartType(rawTarget);
+		
+		if (!reference.isPresent())
+		{
+			logger.warning("Reference "+rawRef+" cannot be found.");
+			return;
+		}
+		if (!target.isPresent())
+		{
+			logger.warning("Target "+rawTarget+" cannot be found.");
+			return;
+		}
+		
+		Session.INSTANCE.compatibilityManager.removeRequirement(reference.get(), target.get());
 	}
 }
