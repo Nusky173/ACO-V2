@@ -1,4 +1,7 @@
-/bin/enums/*.class
-/.gitignore
-/GUI/
+/commands/
+/impl/
 /tests/
+/api/
+/exceptions/
+/doc/
+/GUI/
