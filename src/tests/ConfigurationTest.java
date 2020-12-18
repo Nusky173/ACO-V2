@@ -238,7 +238,7 @@ public class ConfigurationTest
 		Session session = new Session();
 		
 		session.configuration.selectPart(session.configurator.createInstance("XS").get());
-		//EG100 incompatible with TSF7
+		//XS require IS
 		assertFalse(session.configuration.isValid());
 	}
 	
@@ -263,8 +263,11 @@ public class ConfigurationTest
 		session.configuration.selectPart(session.configurator.createInstance("TM5").get());
 		session.configuration.selectPart(session.configurator.createInstance("XS").get());
 		session.configuration.selectPart(session.configurator.createInstance("IS").get());
+		session.configuration.selectPart(session.configurator.createInstance("ED180").get());
+		session.configuration.selectPart(session.configurator.createInstance("TM6").get());
+		
 		//IS/XS incompatible with TM5 & EG100
-		assertFalse(session.configuration.isValid());
+		assertTrue(session.configuration.isValid());
 	}
 	
 

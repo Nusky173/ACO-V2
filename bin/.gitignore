@@ -1,5 +1,4 @@
-/commands/
-/impl/
+/bin/enums/*.class
+/.gitignore
+/GUI/
 /tests/
-/api/
-/exceptions/
