@@ -16,14 +16,14 @@ public class PartTypeTest
 	public void test1() 
 	{
 		Session session = new Session();
-		assertEquals(session.configurator.CreateInstance("EG100").get().getName(), "EG100");
+		assertEquals(session.configurator.createInstance("EG100").get().getName(), "EG100");
 	}
 	
 	@Test
 	public void test2() 
 	{
 		Session session = new Session();
-		assertEquals(session.configurator.CreateInstance("EG100").get().getCategory().getName(), "Engine");
+		assertEquals(session.configurator.createInstance("EG100").get().getCategory().getName(), "Engine");
 	}
 
 }

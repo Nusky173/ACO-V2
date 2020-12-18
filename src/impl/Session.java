@@ -27,27 +27,27 @@ public class Session
 	
 	private void initialize()
 	{
-		configurator.Add(EG100.class, CategoryType.Engine);
-		configurator.Add(EG133.class, CategoryType.Engine);
-		configurator.Add(ED110.class, CategoryType.Engine);
-		configurator.Add(EG210.class, CategoryType.Engine);
-		configurator.Add(ED180.class, CategoryType.Engine);
-		configurator.Add(EH120.class, CategoryType.Engine);
+		configurator.add(EG100.class, CategoryType.Engine);
+		configurator.add(EG133.class, CategoryType.Engine);
+		configurator.add(ED110.class, CategoryType.Engine);
+		configurator.add(EG210.class, CategoryType.Engine);
+		configurator.add(ED180.class, CategoryType.Engine);
+		configurator.add(EH120.class, CategoryType.Engine);
 		
-		configurator.Add(TM5.class, CategoryType.Transmission);
-		configurator.Add(TM6.class, CategoryType.Transmission);
-		configurator.Add(TA5.class, CategoryType.Transmission);
-		configurator.Add(TS6.class, CategoryType.Transmission);
-		configurator.Add(TSF7.class, CategoryType.Transmission);
-		configurator.Add(TC120.class, CategoryType.Transmission);
+		configurator.add(TM5.class, CategoryType.Transmission);
+		configurator.add(TM6.class, CategoryType.Transmission);
+		configurator.add(TA5.class, CategoryType.Transmission);
+		configurator.add(TS6.class, CategoryType.Transmission);
+		configurator.add(TSF7.class, CategoryType.Transmission);
+		configurator.add(TC120.class, CategoryType.Transmission);
 		
-		configurator.Add(XC.class, CategoryType.Exterior);
-		configurator.Add(XM.class, CategoryType.Exterior);
-		configurator.Add(XS.class, CategoryType.Exterior);
+		configurator.add(XC.class, CategoryType.Exterior);
+		configurator.add(XM.class, CategoryType.Exterior);
+		configurator.add(XS.class, CategoryType.Exterior);
 		
-		configurator.Add(IN.class, CategoryType.Interior);
-		configurator.Add(IH.class, CategoryType.Interior);
-		configurator.Add(IS.class, CategoryType.Interior);
+		configurator.add(IN.class, CategoryType.Interior);
+		configurator.add(IH.class, CategoryType.Interior);
+		configurator.add(IS.class, CategoryType.Interior);
 		
 	}
 	

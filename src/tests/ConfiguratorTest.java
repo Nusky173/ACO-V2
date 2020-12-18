@@ -21,10 +21,10 @@ public class ConfiguratorTest
 		Session session = new Session();
 
 		HashSet<Category> set = new HashSet<Category>();
-		set.add(session.configurator.CreateInstance("EG100").get().getCategory());
-		set.add(session.configurator.CreateInstance("TA5").get().getCategory());
-		set.add(session.configurator.CreateInstance("IN").get().getCategory());
-		set.add(session.configurator.CreateInstance("XC").get().getCategory());
+		set.add(session.configurator.createInstance("EG100").get().getCategory());
+		set.add(session.configurator.createInstance("TA5").get().getCategory());
+		set.add(session.configurator.createInstance("IN").get().getCategory());
+		set.add(session.configurator.createInstance("XC").get().getCategory());
 
 		assertEquals(session.configurator.getCategories(), set);	
 	}
@@ -36,10 +36,10 @@ public class ConfiguratorTest
 		Session session = new Session();
 
 		HashSet<Category> set = new HashSet<Category>();
-		set.add(session.configurator.CreateInstance("ED110").get().getCategory());
-		set.add(session.configurator.CreateInstance("TSF7").get().getCategory());
-		set.add(session.configurator.CreateInstance("IS").get().getCategory());
-		set.add(session.configurator.CreateInstance("XM").get().getCategory());
+		set.add(session.configurator.createInstance("ED110").get().getCategory());
+		set.add(session.configurator.createInstance("TSF7").get().getCategory());
+		set.add(session.configurator.createInstance("IS").get().getCategory());
+		set.add(session.configurator.createInstance("XM").get().getCategory());
 
 		assertEquals(session.configurator.getCategories(), set);	
 	}
@@ -50,17 +50,17 @@ public class ConfiguratorTest
 		Session session = new Session();
 		HashSet<PartType> set = new HashSet<PartType>();
 		//getType already test.
-		set.add(session.configurator.CreateInstance("EG100").get().getType());
-		set.add(session.configurator.CreateInstance("ED180").get().getType());
-		set.add(session.configurator.CreateInstance("EH120").get().getType());
-		set.add(session.configurator.CreateInstance("EG133").get().getType());
-		set.add(session.configurator.CreateInstance("EG210").get().getType());
+		set.add(session.configurator.createInstance("EG100").get().getType());
+		set.add(session.configurator.createInstance("ED180").get().getType());
+		set.add(session.configurator.createInstance("EH120").get().getType());
+		set.add(session.configurator.createInstance("EG133").get().getType());
+		set.add(session.configurator.createInstance("EG210").get().getType());
 
-		assertNotEquals(session.configurator.getVariants(session.configurator.CreateInstance("EG100").get().getCategory()), set);	
+		assertNotEquals(session.configurator.getVariants(session.configurator.createInstance("EG100").get().getCategory()), set);	
 
-		set.add(session.configurator.CreateInstance("ED110").get().getType());		
+		set.add(session.configurator.createInstance("ED110").get().getType());		
 		//getCategory already valid.
-		assertEquals(session.configurator.getVariants(session.configurator.CreateInstance("EG100").get().getCategory()), set);
+		assertEquals(session.configurator.getVariants(session.configurator.createInstance("EG100").get().getCategory()), set);
 	}	
 
 }

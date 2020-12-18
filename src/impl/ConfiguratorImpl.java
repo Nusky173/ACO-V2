@@ -34,24 +34,37 @@ public class ConfiguratorImpl implements Configurator
 	    }
 	}
 	
-	public void Add(Class<? extends PartImpl> classRef,CategoryType type) 
+	public void add(Class<? extends PartImpl> classRef,CategoryType type) 
 	{
 		String name = classRef.getSimpleName();
 		PartTypeImpl partType = new PartTypeImpl(name,classRef,categories.get(type));
 		catalog.put(name, partType);
 	}
-
-	public Optional<Part> CreateInstance(String partTypeName)
+	
+	public Optional<PartTypeImpl> getPartType(String partTypeName)
 	{
 		PartTypeImpl partType = catalog.get(partTypeName);
 		
 		if (partType != null)
 		{
-			return Optional.of(partType.newInstance());
+			return Optional.of(partType);
 		}
 		else
 		{
 			return Optional.empty();
+		}
+	}
+	public Optional<Part> createInstance(String partTypeName)
+	{
+		Optional<PartTypeImpl> partType = getPartType(partTypeName);
+		
+		if (!partType.isPresent())
+		{
+			return Optional.empty();
+		}
+		else
+		{
+			return Optional.of(partType.get().newInstance());
 		}
 	}
 	
