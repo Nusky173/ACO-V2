@@ -16,6 +16,7 @@ public abstract class Exterior extends PartImpl
 	public Exterior()
 	{
 		createProperties();
+		initialize();
 	}
 	
 	private void createProperties() 

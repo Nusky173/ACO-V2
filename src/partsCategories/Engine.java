@@ -17,6 +17,7 @@ public abstract class Engine extends PartImpl
 	public Engine()
 	{
 		createProperties();
+		initialize();
 	}
 	
 	private void createProperties()

@@ -17,6 +17,7 @@ public abstract class Interior extends PartImpl
 	public Interior()
 	{
 		createProperties();
+		initialize();
 	}
 	
 	private void createProperties()

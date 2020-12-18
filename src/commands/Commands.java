@@ -1,9 +1,11 @@
 package commands;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import api.Category;
 import api.Part;
 import exceptions.ConfigurationException;
 import exceptions.InvalidParameterException;
@@ -45,7 +47,21 @@ public class Commands
 		HtmlWriter writer = new HtmlWriter(OutputFilename);
 		writer.writeConfiguration(Session.INSTANCE.configuration);
 		writer.save();
-		
 		logger.info("Configuration exported.");
+	}
+	
+	
+	@Command(name = "CATEGORIES",role="User")
+	public static void Categories() throws IOException
+	{
+		ArrayList<String> cats = new ArrayList<String>();
+		
+		for (Category category : Session.INSTANCE.configurator.getCategories())
+		{
+			cats.add(category.getName());
+		}
+		
+		String result = String.join(",", cats);
+		System.out.println(result);
 	}
 }

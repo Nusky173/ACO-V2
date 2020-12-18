@@ -17,6 +17,7 @@ public abstract class Transmission extends PartImpl
 	public Transmission() 
 	{
 		createProperties();
+		initialize();
 	}
 		
 	private void createProperties() 
