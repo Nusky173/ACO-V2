@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -52,6 +53,8 @@ public class ConfiguratorImpl implements Configurator
 	 */
 	public Optional<PartTypeImpl> getPartType(String partTypeName)
 	{
+		Objects.requireNonNull(partTypeName);
+	
 		PartTypeImpl partType = catalog.get(partTypeName);
 		
 		if (partType != null)
@@ -71,6 +74,8 @@ public class ConfiguratorImpl implements Configurator
 	 */
 	public Optional<Part> createInstance(String partTypeName)
 	{
+		Objects.requireNonNull(partTypeName);
+		
 		Optional<PartTypeImpl> partType = getPartType(partTypeName);
 		
 		if (!partType.isPresent())

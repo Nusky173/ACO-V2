@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Set;
 
 import api.*;
@@ -23,6 +24,9 @@ public class HtmlWriter
 	 */
 	public HtmlWriter(String filename) throws IOException
 	{
+		
+		Objects.requireNonNull(filename);
+		
 		File file = new File(filename);
 		this.writer = new BufferedWriter(new FileWriter(file));
 	}	
@@ -43,6 +47,8 @@ public class HtmlWriter
 	 */
 	public void writeConfiguration(ConfigurationImpl configuration) throws IOException
 	{
+		Objects.requireNonNull(configuration);
+		
 		Set<Part> parts = configuration.getSelectedParts();
 		 
 		writer.write("<!DOCTYPE html><html><body>"); // uff hardcoded ?

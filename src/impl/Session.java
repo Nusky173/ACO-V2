@@ -100,8 +100,7 @@ public class Session
 		requirementsXS.add(configurator.getPartType("IS").get());
 		requirementsIS.add(configurator.getPartType("XS").get());
 		
-		
-		//ajouter � compatibilityManager
+
 		compatibilityManager.addIncompatibilities(configurator.getPartType("TA5").get(), incompTA5);
 		compatibilityManager.addIncompatibilities(configurator.getPartType("TSF7").get(), incompTSF7);
 		compatibilityManager.addIncompatibilities(configurator.getPartType("XC").get(), incompXC);

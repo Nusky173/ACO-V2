@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -97,6 +98,8 @@ public class ConfigurationImpl implements Configuration
 	@Override
 	public void selectPart(Part chosenPart) throws InvalidParameterException
 	{
+		Objects.requireNonNull(chosenPart);
+		
 		if(this.configurator.getVariants(chosenPart.getCategory()).contains(chosenPart.getType()))
 		{
 			if (!parts.containsKey(chosenPart.getCategory()))
@@ -115,6 +118,8 @@ public class ConfigurationImpl implements Configuration
 	@Override
 	public Optional<Part> getSelectionForCategory(Category category) throws InvalidParameterException 
 	{
+		Objects.requireNonNull(category);
+		
 		if(this.parts.containsKey(category))
 		{	
 			return Optional.of(parts.get(category));
@@ -128,6 +133,8 @@ public class ConfigurationImpl implements Configuration
 	@Override
 	public void unselectPartType(Category categoryToClear) throws InvalidParameterException
 	{
+		Objects.requireNonNull(categoryToClear);
+		
 		if(this.configurator.getCategories().contains(categoryToClear))
 		{
 			if(this.parts.containsKey(categoryToClear))
