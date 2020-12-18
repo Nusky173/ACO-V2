@@ -17,7 +17,7 @@ public interface CompatibilityManager extends CompatibilityChecker {
     
     /**
      * Supprime une incompatiblité entre deux part type
-     * @param reference
+     * @param reference 
      * @param target
      * @throws InvalidParameterException
      */
