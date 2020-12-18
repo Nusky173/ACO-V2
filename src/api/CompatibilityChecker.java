@@ -6,8 +6,10 @@ import java.util.Set;
 public interface CompatibilityChecker 
 {
 
-	/* 
-	 * Retourne les parties incompatibles avec la partie de référence.
+	/**
+	 * 
+	 * @param reference a PartType
+	 * @return all the incompatibilities of the reference 
 	 */
     Set<PartType> getIncompatibilities(PartType reference);
     

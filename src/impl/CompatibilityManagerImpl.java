@@ -1,6 +1,7 @@
 package impl;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -25,13 +26,31 @@ public class CompatibilityManagerImpl implements CompatibilityManager
 	@Override
 	public Set<PartType> getIncompatibilities(PartType reference) 
 	{
-		return this.incompatibilities.get(reference);
+		Set<PartType> result= this.incompatibilities.get(reference);
+		
+		if (result == null)
+		{
+			return new HashSet<PartType>();
+		}
+		else
+		{
+			return result;
+		}
 	}
 
 	@Override
 	public Set<PartType> getRequirements(PartType reference) 
 	{
-		return requirements.get(reference);
+		Set<PartType> result= requirements.get(reference);
+		
+		if (result == null)
+		{
+			return new HashSet<PartType>();
+		}
+		else
+		{
+			return result;
+		}
 	}
 
 	@Override

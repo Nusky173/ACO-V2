@@ -7,7 +7,7 @@ package api;
  */
 public interface Category 
 {
-	/* Retourne le nom de la catÃ©gorie */
+	/* Retourne le nom de la catégorie */
     String getName();
 
 }

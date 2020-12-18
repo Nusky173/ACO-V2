@@ -1,5 +1,6 @@
 package impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -32,22 +33,33 @@ public class ConfigurationImpl implements Configuration
 	@Override
 	public boolean isValid()
 	{
+		Set<PartType> partTypes = new HashSet<PartType>();
+		
 		for (Part part : parts.values())
+		{
+			partTypes.add(part.getType());
+		}
+		
+		for (PartType part : partTypes)
 		{
 			CompatibilityChecker checker = configurator.getCompatibilityChecker();
 			
 			
-			Set<PartType> incomp = checker.getIncompatibilities(part.getType());
-			Set<PartType> requirements = checker.getRequirements(part.getType());
+			Set<PartType> incomp = checker.getIncompatibilities(part);
+			Set<PartType> requirements = checker.getRequirements(part);
 			
-			for (Part p2 : parts.values())
+			for (PartType p2 : partTypes)
 			{
-				if (incomp != null && incomp.contains(p2.getType()))
+				if (incomp.contains(p2))
 				{
 					return false;
 				}
 				
-				if (requirements != null && !requirements.contains(p2.getType()))
+			}
+
+			for (PartType required : requirements)
+			{
+				if (!partTypes.contains(required))
 				{
 					return false;
 				}
