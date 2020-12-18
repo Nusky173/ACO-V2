@@ -51,6 +51,10 @@ public class CompatibilityManagerImpl implements CompatibilityManager
 		{
 			throw new ConfigurationException("The Part " + target.getName() + " is not incompatible with the part " + reference.getName() + ".");
 		}
+		if(!incompatibilities.containsKey(reference.getName()))
+		{
+			throw new ConfigurationException("The part " + target.getName() +"do not have incompatibilites for now.");
+		}
 		incompatibilities.get(reference.getName()).remove(target);
 	}
 
@@ -69,11 +73,16 @@ public class CompatibilityManagerImpl implements CompatibilityManager
 	@Override
 	public void removeRequirement(PartType reference, PartType target) throws ConfigurationException
 	{
-		if (!incompatibilities.get(reference.getName()).contains(target))
+		if (!requirements.get(reference.getName()).contains(target))
 		{
-			throw new ConfigurationException("The Part " + target.getName() + " is not incompatible with the part " + reference.getName() + ".");
+			throw new ConfigurationException("The Part " + target.getName() + " do not require the part " + reference.getName() + ".");
 		}
-		incompatibilities.get(reference.getName()).remove(target);
+		if(!requirements.containsKey(reference.getName()))
+		{
+			throw new ConfigurationException("The part " + target.getName() +"do not have requirements for now.");
+		}
+		
+		requirements.get(reference.getName()).remove(target);
 	}
 
 

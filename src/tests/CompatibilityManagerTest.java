@@ -2,7 +2,7 @@ package tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.HashSet;
 
@@ -175,5 +175,43 @@ public class CompatibilityManagerTest
 		assertEquals(set, session.compatibilityManager.getIncompatibilities(session.configurator.createInstance("TA5").get().getType()));
 	}
 	
+	//robustess can't remove an incompatibility unexistant.
+	@Test 
+	public void test14() throws ConfigurationException
+	{
+		Session session = new Session();
+		assertThrows(exceptions.ConfigurationException.class, () -> { 
+			session.compatibilityManager.removeIncompatibility(session.configurator.createInstance("TA5").get().getType(), session.configurator.createInstance("EG133").get().getType()) ; });
+	}
+	
+	@Test 
+	public void test15() throws ConfigurationException
+	{
+		Session session = new Session();
+		HashSet<PartType> set = new HashSet<PartType>();
+		set.add(session.configurator.createInstance("EG100").get().getType());
+		session.compatibilityManager.removeIncompatibility(session.configurator.createInstance("IS").get().getType(), session.configurator.createInstance("TM5").get().getType());
+		
+		assertEquals(set, session.compatibilityManager.getIncompatibilities(session.configurator.createInstance("TA5").get().getType()));
+	}
+	
+	//removeRequirements
+	@Test 
+	public void test16() throws ConfigurationException
+	{
+		Session session = new Session();
+		HashSet<PartType> set = new HashSet<PartType>();
+		session.compatibilityManager.removeRequirement(session.configurator.createInstance("IS").get().getType(), session.configurator.createInstance("XS").get().getType());
 
+		assertEquals(set, session.compatibilityManager.getRequirements(session.configurator.createInstance("IS").get().getType()));
+	}
+
+	//robustess can't remove a require unexistant.
+	@Test 
+	public void test17() throws ConfigurationException
+	{
+		Session session = new Session();
+		assertThrows(exceptions.ConfigurationException.class, () -> { 
+			session.compatibilityManager.removeRequirement(session.configurator.createInstance("XS").get().getType(), session.configurator.createInstance("EG100").get().getType()) ; });
+	}
 }
