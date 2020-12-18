@@ -22,6 +22,11 @@ public class Commands
 	
 	private final static String OutputFilename  = "export.html";
 	
+	/**
+	 * Commande qui selectionne une partie
+	 * @param param nom de la partie a séléctionner.
+	 * @throws InvalidParameterException
+	 */
 	@Command(name ="SELECT", role="User")
 	public static void SelectPart(String param) throws InvalidParameterException
 	{
@@ -39,7 +44,7 @@ public class Commands
 	}
 	
 	@Command(name = "COMPLETE", role="User")
-	public static void IsComplete() throws InvalidParameterException
+	public static void IsComplete()
 	{
 		/*
 		 * Here we use System.out because the GUI will use the 

@@ -69,13 +69,20 @@ public class ConfigurationImpl implements Configuration
 	}
 
 	@Override
-	public boolean isComplete() throws InvalidParameterException
+	public boolean isComplete() 
 	{
 		for (Category cat : configurator.getCategories())
 		{	
-			if (!getSelectionForCategory(cat).isPresent()) 
+			try 
 			{
-				return false;			
+				if (!getSelectionForCategory(cat).isPresent()) 
+				{
+					return false;			
+				}
+			} 
+			catch (InvalidParameterException e) 
+			{
+				e.printStackTrace();
 			}
 		}
 		return true;
