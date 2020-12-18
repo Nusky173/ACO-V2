@@ -18,10 +18,15 @@ public class CommandsManager
 {
 	public static final Logger logger =  Logger.getGlobal();
 	
+	/**
+	 * Command methods mapping.
+	 */
 	private static Map<String,CommandInfo> handlers = new HashMap<String,CommandInfo>();
 	
-	/*
-	 * Recherche et charge toute les commandes placés dans la classe Commands.
+	/**
+	 * Extract all method in the Commands class and retreive the methods
+	 * with annotation @Command.
+	 * map the results into handlers.
 	 */
 	public static void initialize()
 	{
@@ -40,13 +45,15 @@ public class CommandsManager
 	   }
 
 	}
-	/*
-	 * Traite une commande a partir de l'input utilisateur.
-	 * Exemple : SELECT EG100
-	 * Le nom de paramètre de la commande doit être égal au nombre de 
-	 * paramètre de la méthode qui représente cette commande.
+	/**
+	 * Handle a command from the raw user input (COMMAND ARG1 ARG2 ARG3 etc)
+	 * The command arguments should have the exact number target method parameters.
+	 * Retreive the command and invoke the method binded to command identifier.
+	 * @param raw The user input
+	 * @throws IllegalArgumentException method cannot be invoked (bad signature)
+	 * @throws InvocationTargetException method cannot be invoked (bad target, (should be static))
 	 */
-	public static void Handle(String raw) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException
+	public static void Handle(String raw) throws IllegalAccessException, InvocationTargetException
 	{
 		String[] split = raw.split("\\s+");
 		
@@ -66,6 +73,9 @@ public class CommandsManager
 				
 				String[] args = Arrays.copyOfRange(split, 1, split.length);
 				
+				/*
+				 * null -> Method is static, there is no target member.
+				 */
 				infos.method.invoke(null,args);
 				
 			}
