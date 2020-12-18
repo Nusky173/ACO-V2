@@ -23,6 +23,13 @@ public class Session
 	
 	public Session() 
 	{
+		
+		reset();
+		
+	}
+	
+	public void reset()
+	{
 		this.Role = RoleType.User;
 		this.configuration = new ConfigurationImpl();
 		this.compatibilityManager = (CompatibilityManager)configuration.getConfigurator().getCompatibilityChecker();
@@ -36,7 +43,6 @@ public class Session
 		{
 			e.printStackTrace();
 		}
-		
 	}
 	/**
 	 * The current session of our carTaylorAPI. Here you can see all the categories and all the partType that we have in our catalog.
