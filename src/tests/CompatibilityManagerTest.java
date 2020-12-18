@@ -214,15 +214,4 @@ public class CompatibilityManagerTest
 		assertThrows(exceptions.ConfigurationException.class, () -> { 
 			session.compatibilityManager.removeRequirement(session.configurator.createInstance("XS").get().getType(), session.configurator.createInstance("EG100").get().getType()) ; });
 	}
-	
-	//robustess can't remove a require unexistant.
-	@Test 
-	public void test18() throws ConfigurationException
-	{
-		Session session = new Session();
-		assertThrows(exceptions.ConfigurationException.class, () -> { 
-			session.compatibilityManager.removeRequirement(session.configurator.createInstance("EG100").get().getType(), session.configurator.createInstance("XS").get().getType()) ; });
-	}
-
-
 }

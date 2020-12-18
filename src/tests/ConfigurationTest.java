@@ -185,5 +185,87 @@ public class ConfigurationTest
 		assertTrue(session.configuration.getSelectedParts().isEmpty());
 	}
 	
+	@Test
+	public void test13() throws InvalidParameterException 
+	{
+		Session session = new Session();
+		
+		session.configuration.selectPart(session.configurator.createInstance("EG100").get());
+		
+		assertTrue(session.configuration.isValid());
+	}
+	
+	@Test
+	public void test14() throws InvalidParameterException 
+	{
+		Session session = new Session();
+		
+		session.configuration.selectPart(session.configurator.createInstance("EG100").get());
+		session.configuration.selectPart(session.configurator.createInstance("TM5").get());
+		session.configuration.selectPart(session.configurator.createInstance("XS").get());
+		session.configuration.selectPart(session.configurator.createInstance("IS").get());
+		//IS/XS incompatible with TM5 & EG100
+		assertFalse(session.configuration.isValid());
+	}
+	@Test
+	public void test15() throws InvalidParameterException 
+	{
+		Session session = new Session();
+		
+		session.configuration.selectPart(session.configurator.createInstance("EG133").get());
+		session.configuration.selectPart(session.configurator.createInstance("EG100").get());
+		session.configuration.selectPart(session.configurator.createInstance("TM6").get());
+		session.configuration.selectPart(session.configurator.createInstance("XS").get());
+		session.configuration.selectPart(session.configurator.createInstance("IS").get());
+		//XS/IS incompatible with EG100 
+		assertFalse(session.configuration.isValid());
+	}
+	
+	@Test
+	public void test16() throws InvalidParameterException 
+	{
+		Session session = new Session();
+		
+		session.configuration.selectPart(session.configurator.createInstance("EG133").get());
+		session.configuration.selectPart(session.configurator.createInstance("TSF7").get());
+		
+		assertFalse(session.configuration.isValid());
+	}
+	
+	@Test
+	public void test17() throws InvalidParameterException 
+	{
+		Session session = new Session();
+		
+		session.configuration.selectPart(session.configurator.createInstance("XS").get());
+		//EG100 incompatible with TSF7
+		assertFalse(session.configuration.isValid());
+	}
+	
+	@Test
+	public void test18() throws InvalidParameterException 
+	{
+		Session session = new Session();
+		
+		session.configuration.selectPart(session.configurator.createInstance("EG133").get());
+		session.configuration.selectPart(session.configurator.createInstance("TM6").get());
+		session.configuration.selectPart(session.configurator.createInstance("XS").get());
+		//XS require IS
+		assertFalse(session.configuration.isValid());
+	}
+	
+	@Test
+	public void test19() throws InvalidParameterException 
+	{
+		Session session = new Session();
+		
+		session.configuration.selectPart(session.configurator.createInstance("EG100").get());
+		session.configuration.selectPart(session.configurator.createInstance("TM5").get());
+		session.configuration.selectPart(session.configurator.createInstance("XS").get());
+		session.configuration.selectPart(session.configurator.createInstance("IS").get());
+		//IS/XS incompatible with TM5 & EG100
+		assertFalse(session.configuration.isValid());
+	}
+	
 
 }

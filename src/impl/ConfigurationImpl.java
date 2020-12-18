@@ -34,7 +34,7 @@ public class ConfigurationImpl implements Configuration
 	{
 		for (Part part : parts.values())
 		{
-			Set<PartType> incomp =configurator.getCompatibilityChecker().getIncompatibilities(part.getType());
+			Set<PartType> incomp = configurator.getCompatibilityChecker().getIncompatibilities(part.getType());
 			Set<PartType> requirements = configurator.getCompatibilityChecker().getRequirements(part.getType());
 			
 			for (Part p2 : parts.values())
