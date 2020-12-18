@@ -9,6 +9,9 @@ import impl.PartImpl;
 
 public abstract class Interior extends PartImpl
 {
+	/**
+	 * The paint of the interior part.
+	 */
 	protected String interior;
 	
 	protected abstract void initialize();
@@ -19,6 +22,9 @@ public abstract class Interior extends PartImpl
 		initialize();
 	}
 	
+	/**
+	 * create the properties for the given part.
+	 */
 	private void createProperties()
 	{
 		Supplier<String> getter = () -> getInterior();
@@ -27,11 +33,20 @@ public abstract class Interior extends PartImpl
 		super.addProperty("interior", getter,setter,possibleValues);
 	}
 	
+	/**
+	 * 
+	 * @return retrieve the paint of the part
+	 */
+	
 	private String getInterior()
 	{
 		return interior;
 	}
 	
+	/**
+	 * 
+	 * @param value set the paint of the part.
+	 */
 	private void setInterior(String value)
 	{
 		interior = value;

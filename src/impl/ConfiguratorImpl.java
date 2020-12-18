@@ -33,7 +33,11 @@ public class ConfiguratorImpl implements Configurator
 			categories.put(categoryType, new CategoryImpl(categoryType.name()));
 	    }
 	}
-	
+	/**
+	 * 
+	 * @param classRef the part class.
+	 * @param type the type of the category, an enum.
+	 */
 	public void add(Class<? extends PartImpl> classRef,CategoryType type) 
 	{
 		String name = classRef.getSimpleName();
@@ -41,6 +45,11 @@ public class ConfiguratorImpl implements Configurator
 		catalog.put(name, partType);
 	}
 	
+	/**
+	 * 
+	 * @param partTypeName the name of the partType. A string
+	 * @return a PartType object, if the name is correctly spelled and the partType is refered in the catalog.
+	 */
 	public Optional<PartTypeImpl> getPartType(String partTypeName)
 	{
 		PartTypeImpl partType = catalog.get(partTypeName);
@@ -54,6 +63,12 @@ public class ConfiguratorImpl implements Configurator
 			return Optional.empty();
 		}
 	}
+	
+	/**
+	 * 
+	 * @param partTypeName the name of the partType. A string
+	 * @return a Part Object, if the name is correctly spelled and the partType is refered in the catalog. 
+	 */
 	public Optional<Part> createInstance(String partTypeName)
 	{
 		Optional<PartTypeImpl> partType = getPartType(partTypeName);

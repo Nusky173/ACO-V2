@@ -21,11 +21,15 @@ public interface Configurator {
      */
     Set<PartType> getVariants(Category category)   throws InvalidParameterException; 
 
-    /*Renvoie la configuration actuelle.*/
+    /**
+     * 
+     * @return a configuration object of the current configuration.
+     */
     Configuration getConfiguration();
 
-    /*
-     * Renvoie le verificateur de compatibilite.
+    /**
+     * 
+     * @return the checker compatibility relative to the current configuration.
      */
     CompatibilityChecker getCompatibilityChecker();
 

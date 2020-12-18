@@ -146,6 +146,9 @@ public class ConfigurationImpl implements Configuration
 		parts.clear();
 		
 	}
+	/**
+	 * print the current configuration.
+	 */
 	public void print() 
 	{
 		for (Category cat : parts.keySet())
