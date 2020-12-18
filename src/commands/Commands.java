@@ -22,7 +22,6 @@ public class Commands
 	
 	private final static String OutputFilename  = "export.html";
 	
-	
 	@Command(name ="SELECT", role="User")
 	public static void SelectPart(String param) throws InvalidParameterException
 	{
@@ -39,15 +38,23 @@ public class Commands
 		logger.info("Part "+part.get().getName()+" selected.");
 	}
 	
-	@Command(name ="COMPLETE", role="User")
+	@Command(name = "COMPLETE", role="User")
 	public static void IsComplete() throws InvalidParameterException
 	{
+		/*
+		 * Here we use System.out because the GUI will use the 
+		 * jar output stream.
+		 */
 		System.out.println(Session.INSTANCE.configuration.isComplete());
 	}
 	
-	@Command(name ="VALID", role="User")
+	@Command(name = "VALID", role="User")
 	public static void IsValid() throws InvalidParameterException
 	{
+		/*
+		 *	Here we use System.out because the GUI will use the 
+		 *	jar output stream.
+		 */
 		System.out.println(Session.INSTANCE.configuration.isValid());
 	}
 	
@@ -116,6 +123,25 @@ public class Commands
 	
 	@Command(name = "UNSELECT",role="User")
 	public static void Unselect(String rawCategory) throws InvalidParameterException
+	{
+		CategoryType type = CategoryType.valueOf(rawCategory);
+		
+		Category category = Session.INSTANCE.configurator.getCategory(type);
+		
+		Session.INSTANCE.configuration.unselectPartType(category);
+	}
+	
+	@Command(name = "ADDCOMP",role="Admin")
+	public static void AddIncompatibility(String rawCategory) throws InvalidParameterException
+	{
+		CategoryType type = CategoryType.valueOf(rawCategory);
+		
+		Category category = Session.INSTANCE.configurator.getCategory(type);
+		
+		Session.INSTANCE.configuration.unselectPartType(category);
+	}
+	@Command(name = "RMCOMP",role="Admin")
+	public static void RemoveIncomp(String rawCategory) throws InvalidParameterException
 	{
 		CategoryType type = CategoryType.valueOf(rawCategory);
 		
