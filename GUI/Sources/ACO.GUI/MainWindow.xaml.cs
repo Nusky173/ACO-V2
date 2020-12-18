@@ -35,7 +35,7 @@ namespace ACO.GUI
         private void DisplayCategories()
         {
             categories.Items.Clear();
-
+           
             string result = CarTaylorHooks.Get("CATEGORIES");
 
             foreach (var category in result.Split(','))

@@ -9,7 +9,6 @@ import impl.PartImpl;
 
 public abstract class Interior extends PartImpl
 {
-
 	protected String interior;
 	
 	protected abstract void initialize();

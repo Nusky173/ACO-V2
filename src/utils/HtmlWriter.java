@@ -25,7 +25,7 @@ public class HtmlWriter
 	{
 		File file = new File(filename);
 		this.writer = new BufferedWriter(new FileWriter(file));
-	}
+	}	
 	/**
 	 * Save & dispose ressources taken by the writer.
 	 * @throws IOException relative to file disposition
