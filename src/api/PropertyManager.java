@@ -9,7 +9,7 @@ public interface PropertyManager
 	 * Returns an immutable set of the property names supported by the property
 	 * manager.
 	 *
-	 * @return
+	 * @return the property names
 	 */
 	public Set<String> getPropertyNames();
 
@@ -31,7 +31,7 @@ public interface PropertyManager
 	 * 
 	 * @param propertyName
 	 *            the property to read
-	 * @return
+	 * @return the optional value of a property
 	 */
 	public Optional<String> getProperty(String propertyName);
 
@@ -40,8 +40,8 @@ public interface PropertyManager
 	 * it not writable, or if the value is invalid then an
 	 * IllegalArgumentException is thrown.
 	 * 
-	 * @param propertyName
-	 * @param propertyValue
+	 * @param propertyName propertyName
+	 * @param propertyValue propertyValue
 	 * @throws IllegalArgumentException
 	 *             (see above)
 	 */
