@@ -38,7 +38,11 @@ public class Session
 		}
 		
 	}
-	
+	/**
+	 * The current session of our carTaylorAPI. Here you can see all the categories and all the partType that we have in our catalog.
+	 * You can also manage the incompatibilities or requirements.
+	 * @throws InvalidParameterException
+	 */
 	private void initialize() throws InvalidParameterException
 	{
 		configurator.add(EG100.class, CategoryType.Engine);
