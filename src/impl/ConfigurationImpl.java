@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import api.*;
-import exceptions.ConfigurationException;
+
 import exceptions.InvalidParameterException;
 
 public class ConfigurationImpl implements Configuration
@@ -34,17 +34,20 @@ public class ConfigurationImpl implements Configuration
 	{
 		for (Part part : parts.values())
 		{
-			Set<PartType> incomp = configurator.getCompatibilityChecker().getIncompatibilities(part.getType());
-			Set<PartType> requirements = configurator.getCompatibilityChecker().getRequirements(part.getType());
+			CompatibilityChecker checker = configurator.getCompatibilityChecker();
+			
+			
+			Set<PartType> incomp = checker.getIncompatibilities(part.getType());
+			Set<PartType> requirements = checker.getRequirements(part.getType());
 			
 			for (Part p2 : parts.values())
 			{
-				if (incomp != null && incomp.contains(p2))
+				if (incomp != null && incomp.contains(p2.getType()))
 				{
 					return false;
 				}
 				
-				if (requirements != null && !requirements.contains(p2))
+				if (requirements != null && !requirements.contains(p2.getType()))
 				{
 					return false;
 				}
@@ -54,7 +57,7 @@ public class ConfigurationImpl implements Configuration
 	}
 
 	@Override
-	public boolean isComplete() throws InvalidParameterException, ConfigurationException 
+	public boolean isComplete() throws InvalidParameterException
 	{
 		for (Category cat : configurator.getCategories())
 		{	

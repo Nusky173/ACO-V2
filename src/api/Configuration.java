@@ -12,7 +12,7 @@ public interface Configuration
     boolean isValid();
 
     /*Check si la configuration est complete.*/
-    boolean isComplete() throws InvalidParameterException, ConfigurationException;
+    boolean isComplete() throws InvalidParameterException;
 
     /*Renvoie toutes les parties de la configuration.*/
     Set<Part> getSelectedParts();

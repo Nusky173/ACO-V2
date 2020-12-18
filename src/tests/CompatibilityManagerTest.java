@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import impl.Session;
 import api.*;
-import exceptions.ConfigurationException;
+
 import exceptions.InvalidParameterException;
 import impl.*;
 
@@ -166,7 +166,7 @@ public class CompatibilityManagerTest
 	
 	//removeIncompatibility
 	@Test 
-	public void test13() throws ConfigurationException
+	public void test13() throws InvalidParameterException
 	{
 		Session session = new Session();
 		HashSet<PartType> set = new HashSet<PartType>();
@@ -177,15 +177,15 @@ public class CompatibilityManagerTest
 	
 	//robustess can't remove an incompatibility unexistant.
 	@Test 
-	public void test14() throws ConfigurationException
+	public void test14() throws  InvalidParameterException
 	{
 		Session session = new Session();
-		assertThrows(exceptions.ConfigurationException.class, () -> { 
+		assertThrows(exceptions.InvalidParameterException.class, () -> { 
 			session.compatibilityManager.removeIncompatibility(session.configurator.createInstance("TA5").get().getType(), session.configurator.createInstance("EG133").get().getType()) ; });
 	}
 	
 	@Test 
-	public void test15() throws ConfigurationException
+	public void test15() throws  InvalidParameterException
 	{
 		Session session = new Session();
 		HashSet<PartType> set = new HashSet<PartType>();
@@ -197,7 +197,7 @@ public class CompatibilityManagerTest
 	
 	//removeRequirements
 	@Test 
-	public void test16() throws ConfigurationException
+	public void test16() throws  InvalidParameterException
 	{
 		Session session = new Session();
 		HashSet<PartType> set = new HashSet<PartType>();
@@ -208,10 +208,10 @@ public class CompatibilityManagerTest
 
 	//robustess can't remove a require unexistant.
 	@Test 
-	public void test17() throws ConfigurationException
+	public void test17() throws  InvalidParameterException
 	{
 		Session session = new Session();
-		assertThrows(exceptions.ConfigurationException.class, () -> { 
+		assertThrows(exceptions. InvalidParameterException.class, () -> { 
 			session.compatibilityManager.removeRequirement(session.configurator.createInstance("XS").get().getType(), session.configurator.createInstance("EG100").get().getType()) ; });
 	}
 }

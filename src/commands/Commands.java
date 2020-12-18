@@ -11,7 +11,7 @@ import api.Part;
 import api.PartType;
 import enums.CategoryType;
 import enums.GasType;
-import exceptions.ConfigurationException;
+
 import exceptions.InvalidParameterException;
 import impl.Session;
 import utils.HtmlWriter;
@@ -40,13 +40,13 @@ public class Commands
 	}
 	
 	@Command(name ="COMPLETE", role="User")
-	public static void IsComplete() throws InvalidParameterException, ConfigurationException
+	public static void IsComplete() throws InvalidParameterException
 	{
 		System.out.println(Session.INSTANCE.configuration.isComplete());
 	}
 	
 	@Command(name ="VALID", role="User")
-	public static void IsValid() throws InvalidParameterException, ConfigurationException
+	public static void IsValid() throws InvalidParameterException
 	{
 		System.out.println(Session.INSTANCE.configuration.isValid());
 	}

@@ -76,7 +76,7 @@ public class ConfigurationTest
 	//isComplete
 	@Test
 	//robustess
-	public void test4() throws InvalidParameterException, ConfigurationException
+	public void test4() throws InvalidParameterException
 	{
 		Session session = new Session();
 		
@@ -88,7 +88,7 @@ public class ConfigurationTest
 	}
 	
 	@Test
-	public void test5() throws InvalidParameterException, ConfigurationException
+	public void test5() throws InvalidParameterException
 	{
 		Session session = new Session();
 		
@@ -115,7 +115,7 @@ public class ConfigurationTest
 	
 	@Test
 	//Robsutess
-	public void test7() throws InvalidParameterException, ConfigurationException
+	public void test7() throws InvalidParameterException
 	{
 		Session session = new Session();
 		
