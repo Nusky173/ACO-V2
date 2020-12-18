@@ -20,6 +20,9 @@ public class CommandsManager
 	
 	private static Map<String,CommandInfo> handlers = new HashMap<String,CommandInfo>();
 	
+	/*
+	 * Recherche et charge toute les commandes placés dans la classe Commands.
+	 */
 	public static void initialize()
 	{
 	    for (final Method method : Commands.class.getDeclaredMethods()) 
@@ -37,11 +40,17 @@ public class CommandsManager
 	   }
 
 	}
+	/*
+	 * Traite une commande a partir de l'input utilisateur.
+	 * Exemple : SELECT EG100
+	 * Le nom de paramètre de la commande doit être égal au nombre de 
+	 * paramètre de la méthode qui représente cette commande.
+	 */
 	public static void Handle(String raw) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
 		String[] split = raw.split("\\s+");
 		
-		String name = split[0]; // split return at least one element
+		String name = split[0]; // split return at least one element, wont throw ex.
 		 
 		CommandInfo infos = handlers.get(name);
 		

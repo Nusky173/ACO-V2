@@ -7,10 +7,20 @@ import exceptions.InvalidParameterException;
 
 public interface CompatibilityManager extends CompatibilityChecker {
 
-	/* Ajoute des incompatiblit� a une partie de r�f�rence */
+	/**
+	 * 
+	 * @param reference le type auquel on ajoute l'incompatibiltié
+	 * @param target les incompatibilités ajoutés.
+	 * @throws InvalidParameterException la réference ne doit pas être null
+	 */
     void addIncompatibilities(PartType reference, Set<PartType> target)  throws InvalidParameterException;
     
-    /* Supprime une incompatiblité a  une partie de référence */
+    /**
+     * Supprime une incompatiblité entre deux part type
+     * @param reference
+     * @param target
+     * @throws InvalidParameterException
+     */
     void removeIncompatibility(PartType reference, PartType target) throws InvalidParameterException ;
     
     /*Ajoute des parties n�cessaire a� la partie de r�f�rence.*/

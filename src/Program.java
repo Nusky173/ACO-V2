@@ -16,6 +16,7 @@ public class Program
 	
 	public static void main(String[] args) throws InvalidParameterException, IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
+		
 		CommandsManager.initialize();
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
