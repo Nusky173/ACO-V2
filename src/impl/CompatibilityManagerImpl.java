@@ -7,6 +7,7 @@ import java.util.Set;
 import api.CompatibilityManager;
 import api.Part;
 import api.PartType;
+import exceptions.ConfigurationException;
 import exceptions.InvalidParameterException;
 
 public class CompatibilityManagerImpl implements CompatibilityManager
@@ -44,13 +45,13 @@ public class CompatibilityManagerImpl implements CompatibilityManager
 	}
 
 	@Override
-	public void removeIncompatibility(PartType reference, PartType target) throws InvalidParameterException 
+	public void removeIncompatibility(PartType reference, PartType target) throws ConfigurationException 
 	{
-		if (reference == null)
+		if (!incompatibilities.get(reference.getName()).contains(target))
 		{
-			throw new InvalidParameterException("The Set of incompatibilities to add to the part " + reference + " is empty.");
+			throw new ConfigurationException("The Part " + target.getName() + " is not incompatible with the part " + reference.getName() + ".");
 		}
-		incompatibilities.remove(reference.getName(), target);
+		incompatibilities.get(reference.getName()).remove(target);
 	}
 
 	@Override
@@ -66,9 +67,13 @@ public class CompatibilityManagerImpl implements CompatibilityManager
 	}
 
 	@Override
-	public void removeRequirement(PartType reference, PartType target)
+	public void removeRequirement(PartType reference, PartType target) throws ConfigurationException
 	{
-		requirements.remove(reference.getName(), target);
+		if (!incompatibilities.get(reference.getName()).contains(target))
+		{
+			throw new ConfigurationException("The Part " + target.getName() + " is not incompatible with the part " + reference.getName() + ".");
+		}
+		incompatibilities.get(reference.getName()).remove(target);
 	}
 
 
