@@ -19,7 +19,7 @@ public class Session
 	public CompatibilityManager compatibilityManager;
 	public ConfiguratorImpl configurator;
 	
-	private RoleType Role;
+	public RoleType Role;
 	
 	public Session() 
 	{
@@ -97,7 +97,7 @@ public class Session
 		requirementsIS.add(configurator.getPartType("XS").get());
 		
 		
-		//ajouter à compatibilityManager
+		//ajouter ï¿½ compatibilityManager
 		compatibilityManager.addIncompatibilities(configurator.getPartType("TA5").get(), incompTA5);
 		compatibilityManager.addIncompatibilities(configurator.getPartType("TSF7").get(), incompTSF7);
 		compatibilityManager.addIncompatibilities(configurator.getPartType("XC").get(), incompXC);
