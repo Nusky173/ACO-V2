@@ -19,7 +19,7 @@ using System.Windows.Shapes;
 namespace ACO.GUI
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Exemple de GUI, rien de serieux :>
     /// </summary>
     public partial class MainWindow : Window
     {
