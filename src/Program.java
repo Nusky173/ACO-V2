@@ -19,20 +19,6 @@ public class Program
 	public static void main(String[] args) throws InvalidParameterException, IOException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
 	{
 		
-		Session session = new Session();
-		
-		
-		
-		session.configuration.selectPart(session.configurator.createInstance("XS").get());
-		session.configuration.selectPart(session.configurator.createInstance("IS").get());
-	
-		
-		
-		//IS/XS incompatible with TM5 & EG100
-	    System.out.println(session.configuration.isValid());
-		
-		
-	    /*
 		CommandsManager.initialize();
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -43,7 +29,7 @@ public class Program
         {
         	CommandsManager.Handle(line);
         }  
-	*/
+
 		
 	}
 }
