@@ -175,12 +175,12 @@ public class Commands
 		Optional<PartTypeImpl> reference = Session.INSTANCE.configurator.getPartType(rawRef);
 		Optional<PartTypeImpl> target = Session.INSTANCE.configurator.getPartType(rawTarget);
 		
-		if (reference.isEmpty())
+		if (!reference.isPresent())
 		{
 			logger.warning("Reference "+rawRef+" cannot be found.");
 			return;
 		}
-		if (target.isEmpty())
+		if (!target.isPresent())
 		{
 			logger.warning("Target "+rawTarget+" cannot be found.");
 			return;
@@ -204,12 +204,12 @@ public class Commands
 		Optional<PartTypeImpl> reference = Session.INSTANCE.configurator.getPartType(rawRef);
 		Optional<PartTypeImpl> target = Session.INSTANCE.configurator.getPartType(rawTarget);
 		
-		if (reference.isEmpty())
+		if (!reference.isPresent())
 		{
 			logger.warning("Reference "+rawRef+" cannot be found.");
 			return;
 		}
-		if (target.isEmpty())
+		if (!target.isPresent())
 		{
 			logger.warning("Target "+rawTarget+" cannot be found.");
 			return;

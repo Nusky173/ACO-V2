@@ -14,8 +14,16 @@ import exceptions.InvalidParameterException;
 
 public class CompatibilityManagerImpl implements CompatibilityManager
 {
+	/**
+	 * the map of the incompatibilities.
+	 * As a key we have a PartType and his key will be all the incompatibilities for the key.
+	 */
 	HashMap<PartType,Set<PartType>> incompatibilities;
-		
+	
+	/**
+	 * the map of the requirements.
+	 * As a key we have a PartType and his key will be all the requirements for the key.
+	 */
 	HashMap<PartType,Set<PartType>> requirements;
 	
 	public CompatibilityManagerImpl()
@@ -23,6 +31,10 @@ public class CompatibilityManagerImpl implements CompatibilityManager
 		this.incompatibilities = new HashMap<PartType,Set<PartType>>();
 		this.requirements  = new HashMap<PartType,Set<PartType>>();
 	}
+	
+	/**
+	 * return the incompatibilities for the reference if there is no incompatibilites for the reference, return an empty Set. 
+	 */
 	@Override
 	public Set<PartType> getIncompatibilities(PartType reference) 
 	{
@@ -37,7 +49,10 @@ public class CompatibilityManagerImpl implements CompatibilityManager
 			return result;
 		}
 	}
-
+	
+	/**
+	 * return the requirements for the reference if there is no requirements for the reference, return an empty Set. 
+	 */
 	@Override
 	public Set<PartType> getRequirements(PartType reference) 
 	{

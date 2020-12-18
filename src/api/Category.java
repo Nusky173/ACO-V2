@@ -9,7 +9,7 @@ public interface Category
 {
 	/**
 	 * 
-	 * @return the name of the catégorie.
+	 * @return the name of the category
 	 */
     String getName();
 

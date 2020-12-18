@@ -10,8 +10,14 @@ import impl.PartImpl;
 
 public abstract class Engine extends PartImpl
 {
+	/**
+	 * The different gas of engines part.  An enum
+	 */
 	protected GasType gasType;
 	
+	/**
+	 * Power of the engine
+	 */
 	protected String power;
 	
 	public Engine()
@@ -20,6 +26,9 @@ public abstract class Engine extends PartImpl
 		initialize();
 	}
 	
+	/**
+	 * create the properties for the given part.
+	 */
 	private void createProperties()
 	{
 		Supplier<String> getter = () -> getGas();
@@ -35,18 +44,37 @@ public abstract class Engine extends PartImpl
 	
 	protected abstract void initialize();
 	
+	/**
+	 * 
+	 * @return retrieve the gas of the part.
+	 */
 	private String getGas()
 	{
 		return gasType.toString();
 	}
+	
+	/**
+	 * 
+	 * @param type set the GasType of the part.
+	 */
 	private void setGasType(String type)
 	{
 		this.gasType = GasType.valueOf(type);
 	}
+	
+	/**
+	 * 
+	 * @return retrieve the power of the part.
+	 */
 	private String getPower()
 	{
 		return power;
 	}
+	
+	/**
+	 * 
+	 * @param type set the power of the part.
+	 */
 	private void setPower(String value)
 	{
 		this.power = value;
