@@ -1,3 +1,3 @@
-  <p>This browser does not support PDFs. Please download the PDF to view it: <a href="Rapport.pdf">Download PDF</a>.</p>
+> ACO 2019 Simon Lecordier & Marius Lumbroso
 
-  [Intro.pdf](Rapport.pdf)
+ * Rapport [Intro.pdf](Rapport.pdf)
