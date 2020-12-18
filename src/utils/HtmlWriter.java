@@ -11,24 +11,41 @@ import impl.ConfigurationImpl;
 
 public class HtmlWriter
 {	
+	/**
+	 * The internal writer 
+	 */
 	private BufferedWriter writer;
 	
+	/**
+	 * Create an HtmlWriter
+	 * @param file target path
+	 * @throws IOException relative to filestream
+	 */
 	public HtmlWriter(String filename) throws IOException
 	{
 		File file = new File(filename);
 		this.writer = new BufferedWriter(new FileWriter(file));
 	}
-	
+	/**
+	 * Save & dispose ressources taken by the writer.
+	 * @throws IOException relative to file disposition
+	 */
 	public void save() throws IOException 
 	{
 		writer.close();
 	}
-
+	/**
+	 * Write the content of the configuration in an Html file. 
+	 * (We should rather use an HTML library)
+	 * This will display fields dynamically
+	 * @param configuration the configuration we want to export
+	 * @throws IOException 
+	 */
 	public void writeConfiguration(ConfigurationImpl configuration) throws IOException
 	{
 		Set<Part> parts = configuration.getSelectedParts();
 		 
-		writer.write("<!DOCTYPE html><html><body>");
+		writer.write("<!DOCTYPE html><html><body>"); // uff hardcoded ?
 		writer.write("<h1>Configuration</h1>");
 		
 		for (Part part : parts)
@@ -67,6 +84,6 @@ public class HtmlWriter
 			writer.write("</table>");
 			writer.write("</br>");
 		
-	}
+		}
 	}
 }
